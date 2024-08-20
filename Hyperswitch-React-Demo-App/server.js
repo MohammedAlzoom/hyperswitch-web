@@ -3,7 +3,7 @@ const express = require("express");
 const { resolve } = require("path");
 const dotenv = require("dotenv");
 const hyper = require("@juspay-tech/hyperswitch-node");
-dotenv.config({ path: "./.env" });
+dotenv.config({ path: "../.env" });
 
 const app = express();
 const PORT = 5252;

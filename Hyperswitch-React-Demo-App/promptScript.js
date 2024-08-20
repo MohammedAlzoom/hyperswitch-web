@@ -1,7 +1,7 @@
 const fs = require("fs");
 const prompt = require("prompt-sync")({ sigint: true });
 
-const envPath = "./.env";
+const envPath = "../.env";
 
 const obj = {
   HYPERSWITCH_PUBLISHABLE_KEY: "Publishable Key",
@@ -22,13 +22,16 @@ function initializeValues(filePath, keyValuePairs) {
     // Process each key-value pair
     Object.entries(keyValuePairs).forEach(([key, value]) => {
       // Find if the key already exists in the .env file
+
       let index = lines.findIndex((line) => line.startsWith(`${key}=`));
 
+      console.log(lines[index]);
       if (index !== -1) {
         if (lines[index] === `${key}=` || lines[index] === `${key}=""`) {
           const promptVal = prompt(`${value} : `);
           // If the key exists, and has not been updated once, update its value
           lines[index] = `${key}="${promptVal}"`;
+          // console.log(lines[index]);
         }
       } else {
         const promptVal = prompt(`${value} : `);

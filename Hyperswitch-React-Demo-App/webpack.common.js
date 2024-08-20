@@ -5,7 +5,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
-require("dotenv").config({ path: "./.env" });
+require("dotenv").config({ path: "../.env" });
 
 module.exports = (endpoint, publicPath = "auto") => {
   const entries = {
