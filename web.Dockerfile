@@ -4,7 +4,6 @@ RUN npm install concurrently -g
 
 WORKDIR /hyperswitch-web
 
-# RUN git clone https://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@github.com/MohammedAlzoom/hyperswitch-web .
 COPY ./ /hyperswitch-web/
 COPY custom-hyperswitch-web/.env /hyperswitch-web/.env
 
