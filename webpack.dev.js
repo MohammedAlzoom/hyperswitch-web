@@ -4,7 +4,7 @@ const { merge } = require("webpack-merge");
 const common = require("./webpack.common.js");
 
 const sdkEnv = process.env.sdkEnv ?? "local";
-const selfUrl = process.env.ENV_SELF_URL_SDK || 'http://localhost:8080';
+const selfUrl = process.env.ENV_CONTROL_URL || 'http://localhost:9000';
 g
 const endpointMap = {
   prod: selfUrl+"/payments",
