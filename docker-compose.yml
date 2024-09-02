@@ -1,0 +1,25 @@
+networks:
+  router_net:
+services:
+  hyperswitch-web:
+    ports:
+      - "9050:9050"
+      - "9060:9060"
+      - "5252:5252"
+    networks:
+      - router_net
+    build:
+      dockerfile: web.Dockerfile
+    environment:
+      - HYPERSWITCH_PUBLISHABLE_KEY=placeholder_publishable_key
+      - HYPERSWITCH_SECRET_KEY=placeholder_api_key
+      - HYPERSWITCH_SERVER_URL=http://localhost:8080
+      - HYPERSWITCH_SERVER_URL_FOR_DEMO_APP=http://hyperswitch-server:8080
+      - HYPERSWITCH_CLIENT_URL=http://localhost:9050
+      - SELF_SERVER_URL=http://localhost:5252
+      - SDK_ENV=local
+      - ENV_LOGGING_URL=http://localhost:3103
+    volumes:
+      - ./docker/custom-hyperswitch-web/.env:/hyperswitch-web/.env
+    labels:
+      logs: "promtail"
