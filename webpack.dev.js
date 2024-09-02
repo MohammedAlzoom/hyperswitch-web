@@ -4,12 +4,13 @@ const { merge } = require("webpack-merge");
 const common = require("./webpack.common.js");
 
 const sdkEnv = process.env.sdkEnv ?? "local";
-
+const selfUrl = process.env.ENV_SELF_URL_SDK || 'http://localhost:8080';
+g
 const endpointMap = {
-  prod: "http://localhost:9000/payments",
-  sandbox: "http://localhost:9000/payments",
-  integ: "http://localhost:8080/api/payments",
-  local: "http://localhost:9000/payments", // Default or local environment endpoint
+  prod: selfUrl+"/payments",
+  sandbox: selfUrl+"/payments",
+  integ: selfUrl+"/api/payments",
+  local: selfUrl+"/payments", // Default or local environment endpoint
 };
 
 const backendEndPoint = endpointMap[sdkEnv] || endpointMap.local;
