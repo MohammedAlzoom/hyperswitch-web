@@ -16,6 +16,7 @@ const sdkEnv = getEnvVariable("sdkEnv", "local");
 const envSdkUrl = getEnvVariable("ENV_SDK_URL", "");
 const envBackendUrl = getEnvVariable("ENV_BACKEND_URL", "");
 const envLoggingUrl = getEnvVariable("ENV_LOGGING_URL", "");
+const selfUrl= getEnvVariable("ENV_SELF_URL_SDK","http://localhost:9050");
 
 const repoVersion = require("./package.json").version;
 const majorVersion = "v" + repoVersion.split(".")[0];
@@ -34,7 +35,7 @@ const getSdkUrl = (env, customUrl) => {
   return urls[env] || urls.local;
 };
 
-const sdkUrl = getSdkUrl(sdkEnv, envSdkUrl);
+const sdkUrl = selfUrl;
 const backendEndPoint =
   envBackendUrl ||
   `https://${sdkEnv === "prod" ? "checkout" : "beta"}.hyperswitch.io/api`;
