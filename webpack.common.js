@@ -13,10 +13,10 @@ const getEnvVariable = (variable, defaultValue) =>
   process.env[variable] ?? defaultValue;
 
 const sdkEnv = getEnvVariable("sdkEnv", "local");
-const envSdkUrl = getEnvVariable("ENV_SDK_URL", "");
+const envSdkUrl = getEnvVariable("ENV_SDK_URL", "https://hy-websdk.fintechsys.net");
 const envBackendUrl = getEnvVariable("ENV_BACKEND_URL", "");
 const envLoggingUrl = getEnvVariable("ENV_LOGGING_URL", "");
-const selfUrl= getEnvVariable("ENV_SELF_URL_SDK","http://localhost:9050");
+const selfUrl= getEnvVariable("ENV_SELF_URL_SDK","https://hy-websdk.fintechsys.net");
 
 const repoVersion = require("./package.json").version;
 const majorVersion = "v" + repoVersion.split(".")[0];
@@ -35,18 +35,17 @@ const getSdkUrl = (env, customUrl) => {
   return urls[env] || urls.local;
 };
 
-const sdkUrl = selfUrl;
+const sdkUrl = selfUrl || "https://hy-websdk.fintechsys.net";
 const backendEndPoint =
-  envBackendUrl ||
-  `https://${sdkEnv === "prod" ? "checkout" : "beta"}.hyperswitch.io/api`;
+  envBackendUrl ||`https://hy-server.fintechsys.net/api`;
 const confirmEndPoint =
   envBackendUrl ||
-  `https://${sdkEnv === "prod" ? "api" : "sandbox"}.hyperswitch.io`;
+  `https://hy-server.fintechsys.net.hyperswitch.io`;
 const logEndpoint =
   envLoggingUrl ||
-  `https://${sdkEnv === "prod" ? "api" : "sandbox"}.hyperswitch.io/logs/sdk`;
+  `https://hy-server.fintechsys.net/logs/sdk`;
 
-const enableLogging = true;
+const enableLogging = false;
 const loggingLevel = "DEBUG";
 const maxLogsPushedPerEventName = 100;
 
